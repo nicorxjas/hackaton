@@ -198,7 +198,9 @@ export function createViewer(container, dialog, initialSelection) {
   controls.maxPolarAngle = Math.PI * .495
   const pmrem = new THREE.PMREMGenerator(renderer)
   const room = new RoomEnvironment()
-  const environment = pmrem.fromScene(room,.045)
+  // sigma 0.03 mantiene el mismo blur suave que 0.045 sin superar el
+  // máximo de 20 samples del PMREM vendido (a 0.045 pide 22 y clippea).
+  const environment = pmrem.fromScene(room,.03)
   scene.environment = environment.texture
   scene.environmentIntensity = .57
   room.dispose()

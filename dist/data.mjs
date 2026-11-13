@@ -133,17 +133,24 @@ export function initialState() {
     jobs: [
       { id: 'TR-1042', machineId: 's780', owner: 'andres', producer: 'Andrés Molina', status: 'open', date: today, description: examples[0].description, diagnosis: 'feeder', photo: './assets/example.jpg', messages: [] },
       { id: 'TR-1041', machineId: 'red1', owner: 'red', producer: 'Clara Benítez', status: 'open', date: shiftDay(today, -1), description: examples[2].description, diagnosis: 'auger', photo: './assets/example.jpg', messages: [] },
-      { id: 'TR-1038', machineId: 'red2', owner: 'red', producer: 'Clara Benítez', status: 'accepted', techId: 'mateo', date: shiftDay(today, -2), description: examples[1].description, diagnosis: 'header', photo: './assets/example.jpg', messages: [{ from: 'producer', text: 'Hola, Mateo. La cosechadora está en el galpón de San Agustín.', time: '09:15' }] },
+      { id: 'TR-1038', machineId: 's780', owner: 'andres', producer: 'Andrés Molina', status: 'accepted', techId: 'mateo', date: shiftDay(today, -2), description: examples[1].description, diagnosis: 'header', photo: './assets/example.jpg', messages: [
+        { from: 'producer', text: 'Hola, Mateo. La cosechadora quedó en el galpón de La Esperanza. ¿Cuándo podés acercarte?', time: '09:15' },
+        { from: 'tech', text: '¡Hola, Andrés! Mañana a primera hora llego. ¿La vibración se siente también con el molinete lleno?', time: '10:02' },
+        { from: 'producer', text: 'Sí, sobre todo cuando entra mucho cultivo. Te espero en el galpón.', time: '10:42' },
+        { from: 'tech', text: 'Perfecto. Llevo herramienta para la barra de corte y repuestos de la plataforma.', time: '11:20' },
+      ] },
     ],
     policies: [
       { id: 'TX-8021', machineId: 's780', start: shiftDay(today, -30), end: shiftDay(today, 150) },
-      { id: 'TX-8022', machineId: '8r', start: shiftDay(today, -20), end: shiftDay(today, 70) },
+      { id: 'TX-8022', machineId: '8r', start: shiftDay(today, -110), end: shiftDay(today, -7) },
       { id: 'TX-8023', machineId: 'red1', start: shiftDay(today, -15), end: shiftDay(today, 75) },
       { id: 'TX-8024', machineId: 'red2', start: shiftDay(today, -10), end: shiftDay(today, 80) },
     ],
     orders: [
       { id: 'RP-301', partId: 'cuchilla', quantity: 2, jobId: 'TR-1038', techId: 'mateo', date: today, status: 'pending' },
+      { id: 'RP-302', partId: 'rodamiento', quantity: 2, jobId: 'TR-1041', techId: 'mateo', date: shiftDay(today, -3), status: 'denied' },
+      { id: 'RP-303', partId: 'cadena', quantity: 2, jobId: 'TR-1042', techId: 'mateo', date: shiftDay(today, -1), status: 'approved' },
     ],
-    nextJob: 1043, nextPolicy: 8025, nextOrder: 302,
+    nextJob: 1043, nextPolicy: 8025, nextOrder: 304,
   }
 }
