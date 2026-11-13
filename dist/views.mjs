@@ -9,7 +9,7 @@ export const roleInfo = {
   dealer: { label: 'Concesionaria', name: 'AgroNorte', initials: 'AN', nav: [['overview','Panel general','grid'], ['academy','Técnicos oficiales','school'], ['inventory','Stock de repuestos','box'], ['orders','Pedidos de repuestos','clipboard'], ['reserved','Stock reservado','shield']] },
 }
 
-export const jobBadge = status => status === 'open' ? badge('Pendiente', 'amber', 'dot') : badge('Aceptado', 'green', 'dot')
+export const jobBadge = status => status === 'open' ? badge('Pendiente', 'amber', 'dot') : status === 'completed' ? badge('Completado', 'green', 'dot') : badge('Aceptado', 'green', 'dot')
 const orderBadge = status => ({ pending: badge('Pendiente', 'amber', 'dot'), approved: badge('Aprobado', 'green', 'dot'), denied: badge('Denegado', 'red', 'dot') })[status]
 export const badge = (label, tone = 'neutral', symbol = '') => `<span class="badge ${tone}">${symbol === 'dot' ? '<i class="dot"></i>' : symbol ? icon(symbol) : ''}${esc(label)}</span>`
 export const button = (label, action, options = {}) => `<button type="button" class="button ${options.className ?? 'secondary'}" data-action="${action}"${options.id ? ` data-id="${esc(options.id)}"` : ''}${options.disabled ? ' disabled' : ''}>${options.icon ? icon(options.icon) : ''}${esc(label)}${options.endIcon ? icon(options.endIcon) : ''}</button>`
@@ -28,7 +28,7 @@ const avatar = (initials, color = 'green') => `<span class="avatar ${color}">${i
 function machineCard(state, machine) {
   const model = modelFor(machine.model)
   const insured = activePolicy(state, machine)
-  return `<article class="machine-card">
+  return `<article class="machine-card" data-action="machine" data-id="${machine.id}" tabindex="0" role="button">
     <div class="machine-visual ${model?.image ?? 'placeholder'}">
       ${model?.image ? `<img src="./assets/${model.image}.jpg" alt="${esc(machine.type)} ${esc(machine.model)}">` : icon(typeIcons[machine.type])}
       <div class="machine-badges">${badge(insured ? 'Asegurada' : 'Sin seguro', insured ? 'green' : 'sand', insured ? 'shield' : 'dot')}
@@ -81,7 +81,7 @@ function technicianCard(tech, official = false) {
     <div class="profile-top">${avatar(tech.initials,tech.color)}<div><h3>${tech.name}</h3><p>${tech.company}</p></div><span class="rating">${icon('star')} ${tech.score}</span></div>
     <div class="profile-detail"><span>${icon('pin')} ${tech.location}</span><span>${icon(official ? 'school' : 'wrench')} ${official ? tech.certification : tech.specialty}</span></div>
     <div class="profile-footer">${official || tech.official ? badge('Técnico oficial','green','check') : `<span class="subtle">A ${tech.distance} km</span>`}
-      ${button('Ver perfil','technician',{id:tech.id,className:'text',endIcon:'arrow'})}</div></article>`
+      <div class="row-actions">${official ? '' : button('Contratar','hire-tech',{id:tech.id,className:'secondary compact',icon:'user-plus'})}${button('Ver perfil','technician',{id:tech.id,className:'text',endIcon:'arrow'})}</div></div></article>`
 }
 
 function market() {
