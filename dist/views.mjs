@@ -46,7 +46,7 @@ function fleet(state, ui) {
   const machines = ownerMachines(state)
   const covered = machines.filter(machine => activePolicy(state, machine)).length
   const count = state.jobs.filter(job => job.owner === 'andres' && job.status === 'open').length
-  return `${heading('Mi flota', 'Administrá tus máquinas, coberturas y servicios en un solo lugar.', button('Nueva máquina','add-machine',{icon:'plus',className:'primary'}))}
+  return `${heading('Mi flota', 'Administrá tus máquinas, coberturas y servicios en un solo lugar.', button('Nueva máquina','add-machine',{icon:'plus',className:'secondary'}))}
     <section class="hero" aria-label="Asistencia para tu flota">
       <div class="hero-copy"><h2>Asistencia en campo</h2>
       <p>Reportá una falla y conectá con un técnico<br class="desktop-br"> para volver al campo.</p>

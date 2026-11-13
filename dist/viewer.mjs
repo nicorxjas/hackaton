@@ -189,7 +189,7 @@ export function createViewer(container, dialog, initialSelection) {
   container.prepend(renderer.domElement)
   container.querySelector('.scene-loading')?.remove()
   const scene = new THREE.Scene()
-  scene.background = new THREE.Color('#e9ede4')
+  scene.background = new THREE.Color('#0A0B0A')
   const camera = new THREE.PerspectiveCamera(39,1,.1,100)
   const controls = new OrbitControls(camera,renderer.domElement)
   controls.enableDamping = true
@@ -212,15 +212,15 @@ export function createViewer(container, dialog, initialSelection) {
   sun.shadow.bias = -.00015
   sun.shadow.normalBias = .026
   scene.add(sun)
-  const plane = new THREE.Mesh(new THREE.PlaneGeometry(160,160),new THREE.ShadowMaterial({color:0x3f5037,opacity:.26}))
+  const plane = new THREE.Mesh(new THREE.PlaneGeometry(160,160),new THREE.ShadowMaterial({color:0x000000,opacity:.5}))
   plane.rotation.x = -rad
   plane.position.y = -.055
   plane.receiveShadow = true
   scene.add(plane)
-  const grid = new THREE.GridHelper(26,52,0xaebcad,0xc4cfc1)
+  const grid = new THREE.GridHelper(26,52,0x9CA3AF,0x2C302E)
   grid.position.y = -.05
   grid.material.transparent = true
-  grid.material.opacity = .46
+  grid.material.opacity = .55
   scene.add(grid)
 
   const groups = makeMachine(scene)
@@ -244,7 +244,7 @@ export function createViewer(container, dialog, initialSelection) {
   const labelsButton = dialog.querySelector('#viewer-labels')
   const targets = Object.fromEntries(Object.entries(dimensions).map(([id,item]) => [id,new THREE.Vector3(...item.origin)]))
   const original = new Map()
-  const focusMaterial = new THREE.MeshStandardMaterial({color:'#9fb348',emissive:'#68773d',emissiveIntensity:.24,roughness:.47,metalness:.2})
+  const focusMaterial = new THREE.MeshStandardMaterial({color:'#A9FC67',emissive:'#A9FC67',emissiveIntensity:.16,roughness:.47,metalness:.2})
   let selected
   let labels = true
   let width

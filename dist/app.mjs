@@ -53,8 +53,8 @@ function render() {
   const role = roleInfo[ui.role]
   const navItem = role.nav.find(item => item[0] === ui.page)
   $('#sidebar').classList.toggle('mobile-open', ui.navOpen)
-  $('#sidebar').innerHTML = `<button class="brand" data-action="navigate" data-id="${role.nav[0][0]}" aria-label="Trexo, inicio">
-    <img src="./assets/trexo.svg" alt=""><span>trexo<span>.</span></span></button>
+  $('#sidebar').innerHTML = `<button class="brand" data-action="navigate" data-id="${role.nav[0][0]}" aria-label="TREXO., inicio">
+    <img src="./assets/trexo.svg" alt="TREXO." class="brand-logo" width="131" height="36"></button>
     <div class="sidebar-main"><span class="nav-label">ESPACIO DE TRABAJO</span>
     <nav>${role.nav.map(([id,label,symbol]) => {
       const count = pendingFor(id)

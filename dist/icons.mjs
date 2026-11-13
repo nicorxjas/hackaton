@@ -5,7 +5,7 @@ const paths = {
   users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.9M16 3.2a4 4 0 0 1 0 7.6"/><circle cx="9" cy="7" r="4"/>',
   user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2"/>',
   shield: '<path d="M12 22s7-3.2 7-9V5l-7-3-7 3v8c0 5.8 7 9 7 9z"/><path d="m9 12 2 2 4-4"/>',
-  clipboard: '<rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1" fill="var(--icon-fill, white)"/><path d="M9 11h6m-6 5h6"/>',
+  clipboard: '<rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1" fill="var(--icon-fill, currentColor)"/><path d="M9 11h6m-6 5h6"/>',
   chat: '<path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5H5l1.4-3A8.5 8.5 0 1 1 21 11.5Z"/><path d="M9 11.5h7"/>',
   pin: '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/>',
   chevron: '<path d="m9 18 6-6-6-6"/>',
@@ -47,5 +47,5 @@ const paths = {
 }
 
 export function icon(name, className = '') {
-  return '<svg class="icon ' + className + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] ?? paths.settings) + '</svg>'
+  return '<svg class="icon ' + className + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] ?? paths.settings) + '</svg>'
 }
